@@ -401,7 +401,8 @@ module GooglePlaces
       options[:fields] = fields if fields.present?
       options[:locationbias] = location_bias if location_bias.present?
 
-      request(:spot_by_finder, multipage_request, exclude, options)
+      response = Request.spot_by_finder(options)
+      self.new(response["candidates"].first, api_key)
     end
 
     def self.request(method, multipage_request, exclude, options)
