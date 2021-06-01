@@ -7,6 +7,7 @@ module GooglePlaces
 
     include ::HTTParty
     format :json
+    debug_output $stdout
 
     NEARBY_SEARCH_URL = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
     DETAILS_URL       = 'https://maps.googleapis.com/maps/api/place/details/json'

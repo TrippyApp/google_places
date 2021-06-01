@@ -400,7 +400,6 @@ module GooglePlaces
         :locationbias => location_bias
       }
 
-
       request(:spot_by_finder, multipage_request, exclude, options)
     end
 
