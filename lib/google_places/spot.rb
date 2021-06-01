@@ -392,13 +392,14 @@ module GooglePlaces
       exclude = []
 
       options= {
-        :input_type => "textquery",
+        :inputtype => "textquery",
         :key => api_key,
         :input => query,
-        :language => language,
-        :fields => fields,
-        :locationbias => location_bias
       }
+
+      options[:language] = language if language.present?
+      options[:fields] = fields if fields.present?
+      options[:locationbias] = location_bias if location_bias.present?
 
       request(:spot_by_finder, multipage_request, exclude, options)
     end
