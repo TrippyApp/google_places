@@ -351,7 +351,6 @@ module GooglePlaces
 
       query = query
       multipage_request = !!options.delete(:multipage)
-      fields = options.delete(:fields)
       location = Location.new(options.delete(:lat), options.delete(:lng)) if with_location
       radius = options.delete(:radius) if with_radius
       rankby = options.delete(:rankby)
@@ -369,7 +368,6 @@ module GooglePlaces
         :rankby => rankby,
         :language => language,
         :retry_options => retry_options,
-        :fields => fields
       }
 
       options[:location] = location.format if with_location
@@ -383,6 +381,27 @@ module GooglePlaces
       end
 
       request(:spots_by_query, multipage_request, exclude, options)
+    end
+
+    def self.list_find_by_query(query, api_key, options = {})
+      query = query
+      multipage_request = !!options.delete(:multipage)
+      fields = options.delete(:fields)
+      language = options.delete(:language)
+      location_bias = options.delete(:location_bias)
+      exclude = []
+
+      options= {
+        :input_type => "textquery",
+        :key => api_key,
+        :input => query,
+        :language => language,
+        :fields => fields,
+        :locationbias => location_bias
+      }
+
+
+      request(:spot_by_finder, multi_pages_request, exclude, options)
     end
 
     def self.request(method, multipage_request, exclude, options)

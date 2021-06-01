@@ -15,6 +15,7 @@ module GooglePlaces
     PAGETOKEN_URL     = 'https://maps.googleapis.com/maps/api/place/search/json'
     RADAR_SEARCH_URL  = 'https://maps.googleapis.com/maps/api/place/radarsearch/json'
     AUTOCOMPLETE_URL  = 'https://maps.googleapis.com/maps/api/place/autocomplete/json'
+    FIND_PLACE_URL    = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json'
 
     # Search for Spots at the provided location
     #
@@ -55,6 +56,13 @@ module GooglePlaces
     # @see https://developers.google.com/maps/documentation/places/supported_types List of supported types
     def self.spots(options = {})
       request = new(NEARBY_SEARCH_URL, options)
+      request.parsed_response
+    end
+
+
+    # Only use this one!
+    def self.spot_by_finder(options = {})
+      request = new(FIND_PLACE_URL, options)
       request.parsed_response
     end
 

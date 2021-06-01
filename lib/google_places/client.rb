@@ -165,6 +165,16 @@ module GooglePlaces
         detail
       )
     end
+
+    def spots_by_find_query(query, options = {})
+      options = @options.merge(options)
+      detail = options.delete(:detail)
+      collection_detail_level(
+        Spot.list_find_by_query(query, @api_key, options),
+        detail
+      )
+    end
+
     # Search for Spots within a give SW|NE bounds with query
     #
     # @return [Array<Spot>]
