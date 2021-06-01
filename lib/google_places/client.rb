@@ -167,7 +167,6 @@ module GooglePlaces
     end
 
     def spots_by_find_query(query, options = {})
-      byebug
       options = @options.merge(options)
       detail = options.delete(:detail)
       collection_detail_level(

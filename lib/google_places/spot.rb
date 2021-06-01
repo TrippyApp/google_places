@@ -401,7 +401,7 @@ module GooglePlaces
       }
 
 
-      request(:spot_by_finder, multi_pages_request, exclude, options)
+      request(:spot_by_finder, multipage_request, exclude, options)
     end
 
     def self.request(method, multipage_request, exclude, options)
