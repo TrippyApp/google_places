@@ -351,6 +351,7 @@ module GooglePlaces
 
       query = query
       multipage_request = !!options.delete(:multipage)
+      fields = options.delete(:fields)
       location = Location.new(options.delete(:lat), options.delete(:lng)) if with_location
       radius = options.delete(:radius) if with_radius
       rankby = options.delete(:rankby)
@@ -367,7 +368,8 @@ module GooglePlaces
         :key => api_key,
         :rankby => rankby,
         :language => language,
-        :retry_options => retry_options
+        :retry_options => retry_options,
+        :fields => fields
       }
 
       options[:location] = location.format if with_location
